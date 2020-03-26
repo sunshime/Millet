@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/find/find",
+    "pages/cart/cart",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小米子",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./assets/images/home.png",
+        "selectedIconPath": "./assets/images/homeSelected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "./assets/images/category.png",
+        "selectedIconPath": "./assets/images/categorySelected.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "iconPath": "./assets/images/find.png",
+        "selectedIconPath": "./assets/images/findSelected.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "./assets/images/cart.png",
+        "selectedIconPath": "./assets/images/cartSelected.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "./assets/images/user.png",
+        "selectedIconPath": "./assets/images/userSelected.png",
+        "text": "我的"
+      }
+    ],
+    "color": "#333",
+    "selectedColor": "#F56C02"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
