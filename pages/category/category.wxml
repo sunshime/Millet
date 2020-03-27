@@ -1,2 +1,21 @@
-<!--pages/category/category.wxml-->
-<text>pages/category/category.wxml</text>
+<view class="category">
+  <scroll-view scroll-y scroll-with-animation="{{true}}" class="left">
+    <view wx:for="{{category}}" wx:key="{{index}}" class="items {{(activeId==index)?' active':''}}" data-index="{{index}}" bindtap="checkItem">{{item.name}}</view>
+  </scroll-view>
+  <scroll-view class="right" scroll-y="true" scroll-with-animation="true" bindscroll="scrollRight" scroll-top="{{rightProTop}}">
+    <view wx:for="{{category}}" wx:key="{{index}}" class="rt-item">
+      <view class="titles">
+        <view class="line-lt"></view>
+        <view class="name">{{item.name}}</view>
+        <view class="line-rt"></view>
+      </view>
+      <view class="content">
+        <view class="ct-item" wx:for="{{item.list}}" wx:for-index="indexs" wx:for-item="items" wx:key="{{indexs+items}}">
+          <image src="{{items.picture}}"></image>
+          <view class="desc">{{items.desc}}</view>
+        </view>
+      </view>
+    </view>
+
+  </scroll-view>
+</view>
