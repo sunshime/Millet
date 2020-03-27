@@ -1,25 +1,2 @@
-<view class="category">
-  <!-- 左边 -->
-  <scroll-view class="left nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh)">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}}" class="items {{(TabCur==index)?' active':''}}" wx:for="{{category}}" wx:key bindtap='tabSelect' data-id="{{index}}">
-      {{item.name}}
-    </view>
-  </scroll-view>
-
-  <!-- 右边 -->
-  <scroll-view class="right" scroll-y scroll-with-animation style="height:calc(100vh)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
-    <view wx:for="{{category}}" wx:key="{{index}}" class="rt-item" id="main-{{index}}">
-      <view class="titles">
-        <view class="line-lt"></view>
-        <view class="name">{{item.name}}</view>
-        <view class="line-rt"></view>
-      </view>
-      <view class="content">
-        <view class="ct-item" wx:for="{{item.list}}" wx:for-index="indexs" wx:for-item="items" wx:key="{{indexs+items}}">
-          <image src="{{items.picture}}"></image>
-          <view class="desc">{{items.desc}}</view>
-        </view>
-      </view>
-    </view>
-  </scroll-view>
-</view>
+<!--pages/find/find.wxml-->
+<text>pages/find/find.wxml</text>
