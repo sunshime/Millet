@@ -1,66 +1,71 @@
-// pages/my/my.js
+const app = getApp()
+import category from '../../api/category.js'
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    TabCur: 0,
+    MainCur: 0,
+    VerticalNavTop: 0,
+    category: category,
+    load: true
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad() {
+    // wx.showLoading({
+    //   title: '加载中...',
+    //   mask: true
+    // });
+    // let category = [{}];
+    // for (let i = 0; i < 26; i++) {
+    //   category[i] = {};
+    //   category[i].name = String.fromCharCode(65 + i);
+    //   category[i].id = i;
+    // }
+    // this.setData({
+    //   category: category,
+    //   categoryCur: category[0]
+    // })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onReady() {
+    wx.hideLoading()
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      MainCur: e.currentTarget.dataset.id,
+      VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
+    })
+    console.log('VerticalNavTop===>', this.data.VerticalNavTop)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  VerticalMain(e) {
+    console.log('e===>',e)
+    let that = this;
+    let category = this.data.category;
+    let tabHeight = 0;
+    if (this.data.load) {
+      for (let i = 0; i < category.length; i++) {
+        let view = wx.createSelectorQuery().select("#main-" + category[i].id);
+        view.fields({
+          size: true
+        }, data => {
+          category[i].top = tabHeight;
+          tabHeight = tabHeight + data.height;
+          category[i].bottom = tabHeight;
+        }).exec();
+      }
+      that.setData({
+        load: false,
+        category: category
+      })
+    }
+    let scrollTop = e.detail.scrollTop + 20;
+    for (let i = 0; i < category.length; i++) {
+      if (scrollTop > category[i].top && scrollTop < category[i].bottom) {
+        that.setData({
+          VerticalNavTop: (category[i].id - 1) * 50,
+          TabCur: category[i].id
+        })
+        return false
+      }
+    }
   }
 })

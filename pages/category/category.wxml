@@ -1,9 +1,14 @@
 <view class="category">
-  <scroll-view scroll-y scroll-with-animation="{{true}}" class="left">
-    <view wx:for="{{category}}" wx:key="{{index}}" class="items {{(activeId==index)?' active':''}}" data-index="{{index}}" bindtap="checkItem">{{item.name}}</view>
+  <!-- 左边 -->
+  <scroll-view class="left nav" scroll-y scroll-with-animation scroll-top="{{verticalNavTop}}" style="height:calc(100vh)">
+    <view class="items {{(tabCur==index)?' active':''}}" wx:for="{{category}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
   </scroll-view>
-  <scroll-view class="right" scroll-y="true" scroll-with-animation="true" bindscroll="scrollRight" scroll-top="{{rightProTop}}">
-    <view wx:for="{{category}}" wx:key="{{index}}" class="rt-item">
+
+  <!-- 右边 -->
+  <scroll-view class="right" scroll-y scroll-with-animation style="height:calc(100vh)" scroll-into-view="main-{{mainCur}}" bindscroll="VerticalMain">
+    <view wx:for="{{category}}" wx:key="{{index}}" class="rt-item" id="main-{{index}}">
       <view class="titles">
         <view class="line-lt"></view>
         <view class="name">{{item.name}}</view>
@@ -16,6 +21,5 @@
         </view>
       </view>
     </view>
-
   </scroll-view>
 </view>
