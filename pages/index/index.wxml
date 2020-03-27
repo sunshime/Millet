@@ -7,9 +7,32 @@
     </view>
   </view>
   <swiper indicator-dots="true" indicator-color="#fff" indicator-active-color="red" autoplay="true" interval="3500" circular="true" class="swiper">
-      <swiper-item class="swiper-item" wx:for="{{swiperList}}" wx:for-item="item" wx:for-index="index" wx:key="index+item" >
-        <image src="{{item.imgurl}}" mode="aspectFill"></image>
-      </swiper-item>
-    </swiper>
+    <swiper-item class="swiper-item" wx:for="{{swiperList}}" wx:for-item="item" wx:for-index="index" wx:key="index+item">
+      <image src="{{item.imgurl}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+
+  <view class="content">
+    <view class="nav">
+      <view class="nav-items" wx:for="{{navList}}" wx:for-item="items" wx:for-index="indexs" wx:key="indexs+items">
+        <image src="{{items.icon}}"></image>
+        <view class="nav-title">{{items.title}}</view>
+      </view>
+    </view>
+    <view class="recommend">
+      <view class="title">精品推荐</view>
+      <view class="substance">
+        <view class="sub-item" wx:for="{{goodList}}" wx:for-item="item" wx:for-index="index" wx:key="item+index">
+          <image src="{{item.url}}"></image>
+          <view class="name">{{item.name}}</view>
+          <view class="brief">{{item.brief}}</view>
+          <view class="price">
+            <view class="new">￥{{item.price}}</view>
+            <view class="old" wx:if="{{item.oldPrice}}">￥{{item.oldPrice}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 
 </view>
