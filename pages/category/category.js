@@ -14,20 +14,13 @@ Page({
     //   title: '加载中...',
     //   mask: true
     // });
-    // let category = [{}];
-    // for (let i = 0; i < 26; i++) {
-    //   category[i] = {};
-    //   category[i].name = String.fromCharCode(65 + i);
-    //   category[i].id = i;
-    // }
-    // this.setData({
-    //   category: category,
-    //   categoryCur: category[0]
-    // })
+
   },
   onReady() {
-    wx.hideLoading()
+    // wx.hideLoading()
   },
+
+  // 切换左边菜单
   tabSelect(e) {
     this.setData({
       tabCur: e.currentTarget.dataset.id,
@@ -38,33 +31,39 @@ Page({
     // console.log('verticalNavTop===>', this.data.verticalNavTop)
   },
 
+  // 滑动右边对应左边菜单切换
   VerticalMain(e) {
     console.log('e===>', e)
     let that = this;
     let category = this.data.category;
     let tabHeight = 0;
-    if (this.data.load) {
-      for (let i = 0; i < category.length; i++) {
-        let view = wx.createSelectorQuery().select("#main-" + category[i].id);
-        view.fields({
-          size: true
-        }, data => {
-          category[i].top = tabHeight;
-          tabHeight = tabHeight + data.height;
-          category[i].bottom = tabHeight;
-        }).exec();
-      }
-      that.setData({
-        load: false,
-        category: category
-      })
+
+    for (let i = 0; i < category.length; i++) {
+      let view = wx.createSelectorQuery().select("#main-" + i);
+      console.log("view===>", view)
+      view.fields({
+        size: true
+      }, data => {
+        console.log("data===>", data)
+
+        category[i].top = tabHeight;
+        tabHeight = tabHeight + data.height;
+        category[i].bottom = tabHeight;
+
+      }).exec();
     }
-    let scrollTop = e.detail.scrollTop + 20;
+    that.setData({
+      category: category
+    })
+
+    console.log(this.data.category)
+
+    let scrollTop = e.detail.scrollTop + 30;
     for (let i = 0; i < category.length; i++) {
       if (scrollTop > category[i].top && scrollTop < category[i].bottom) {
         that.setData({
-          verticalNavTop: (category[i].id - 1) * 50,
-          tabCur: category[i].id
+          verticalNavTop: (i - 4) * 50,
+          tabCur: i
         })
         return false
       }
