@@ -1,2 +1,14 @@
-<!--pages/my/my.wxml-->
-<text>pages/my/my.wxml</text>
+<view>
+  <view wx:for="{{list}}" wx:key="{{item.id}}" class='list' wx:for-index="idx">
+    <view class='column' bindtouchstart='touchS' bindtouchmove='touchM' bindtouchend='touchE' data-idx="{{idx}}" style='{{item.style}}'>
+      <view class='row'>
+        <text>{{item.name}}</text>
+        <text>{{item.tel}}</text>
+      </view>
+      <text>{{item.address}}</text>
+    </view>
+    <view class='del' data-index="{{idx}}" bindtap='delItem'>
+      删除
+    </view>
+  </view>
+</view>

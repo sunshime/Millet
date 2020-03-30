@@ -1,2 +1,29 @@
-<!--pages/cart/cart.wxml-->
-<text>pages/cart/cart.wxml</text>
+<view class="cart">
+	<view class="content">
+		<view class="item" wx:for="{{dataList}}" wx:key="item.id">
+			<view class="item-left" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" style="right:{{item.right}}px">
+				<view class="icon-check">
+					<image src="{{noCheck}}"></image>
+				</view>
+				<view class="imgs">
+					<image src="{{item.img}}"></image>
+				</view>
+				<view class="context">
+					<view class="title">{{item.title}}</view>
+					<view class="bottoms">
+						<view class="price">￥{{item.price}}</view>
+						<view class="num">
+							<view class="opare">-</view>
+							<view class="opare nums">{{item.num}}</view>
+							<view class="opare">+</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="delete" data-index="{{index}}" bindtap="delItem">删除</view>
+		</view>
+	</view>
+	<view class="footer">
+
+	</view>
+</view>

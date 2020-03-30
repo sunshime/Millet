@@ -24,6 +24,7 @@
         <image class="right" src="../../assets/images/cancel.png" bindtap="close"></image>
       </view>
       <video src="{{videoUrl}}" autoplay="true"></video>
+      
     </view>
   </view>
 </view>
