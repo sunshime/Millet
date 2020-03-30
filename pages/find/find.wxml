@@ -1,2 +1,29 @@
-<!--pages/find/find.wxml-->
-<text>pages/find/find.wxml</text>
+<view class="find">
+  <view class="nav">
+    <view class="item" wx:for="{{navList}}" wx:key="index+item">
+      <image src="{{item.imgSrc}}"></image>
+      <view class="text">{{item.text}}</view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="items" wx:for="{{contentList}}" wx:key="index+item">
+      <view class="item-img" data-text="{{item.text}}" data-videoSrc="{{item.videoSrc}}" bindtap="openVideo">
+        <image class="imgs" src="{{item.imgUrl}}"></image>
+        <image class="icon" src="../../assets/images/play.jpg"></image>
+      </view>
+
+      <view class="texts">{{item.text}}</view>
+      <view class="desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <view class="dialog" catchtouchmove="{{true}}" wx:if="{{isShow}}">
+    <view class="video">
+      <view class="title">
+        <view class="left">{{videoTitle}}</view>
+        <image class="right" src="../../assets/images/cancel.png" bindtap="close"></image>
+      </view>
+      <video src="{{videoUrl}}" autoplay="true"></video>
+    </view>
+  </view>
+</view>
