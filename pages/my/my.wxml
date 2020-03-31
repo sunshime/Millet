@@ -1,0 +1,34 @@
+<view class="my">
+	<view class="top">
+		<view class="top-icon">
+			<image src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2982007256,3179512701&fm=26&gp=0.jpg"></image>
+		</view>
+		<view class="top-text">小米子</view>
+	</view>
+	<view class="bottom">
+		<view class="item">
+			<view class="items" wx:for="{{myList.list}}" wx:key="index">
+				<view class="icon">
+					<image src="{{item.icon}}"></image>
+				</view>
+				<view class="text">{{item.text}}</view>
+			</view>
+		</view>
+		<view class="item">
+			<view class="items card">
+				<view class="icon">
+					<image src="{{myList.card.icon}}"></image>
+				</view>
+				<view class="text">{{myList.card.text}}</view>
+			</view>
+		</view>
+		<view class="item">
+			<view class="items">
+				<view class="icon">
+					<image src="{{myList.setting.icon}}"></image>
+				</view>
+				<view class="text">{{myList.setting.text}}</view>
+			</view>
+		</view>
+	</view>
+</view>
