@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/cart/cart",
-    "pages/my/my",
     "pages/index/index",
+    "pages/my/my",
+    "pages/cart/cart",
     "pages/find/find",
     "pages/category/category",
     "components/tabbar/tabbar"
