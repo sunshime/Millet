@@ -1,15 +1,16 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/cart/cart",
     "pages/my/my",
+    "pages/index/index",
     "pages/find/find",
-    "pages/category/category"
+    "pages/category/category",
+    "components/tabbar/tabbar"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "小米子",
+    "navigationBarTitleText": "Millet - 小米子",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

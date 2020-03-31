@@ -1,10 +1,10 @@
 <view class="cart">
-	<view class="content">
+	<view class="content" wx:if="{{dataList.length>0}}" >
 		<!-- 通过 isTouchMove 的值来对应移动位置-->
 		<view class="item {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{dataList}}" wx:key="item.id">
 			<view class="item-left" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" animation='{{item.animation}}'>
-				<view class="icon-check">
-					<image src="{{noCheck}}"></image>
+				<view class="icon-check" bindtap="checkItem" data-item="{{item}}" data-index="{{index}}">
+					<image src="{{item.checked?check:noCheck}}"></image>
 				</view>
 				<view class="imgs">
 					<image src="{{item.img}}"></image>
@@ -14,9 +14,9 @@
 					<view class="bottoms">
 						<view class="price">￥{{item.price}}</view>
 						<view class="num">
-							<view class="opare">-</view>
+							<view class="opare" data-index="{{index}}" bindtap="reduce">-</view>
 							<view class="opare nums">{{item.num}}</view>
-							<view class="opare">+</view>
+							<view class="opare" data-index="{{index}}" bindtap="add">+</view>
 						</view>
 					</view>
 				</view>
@@ -24,7 +24,26 @@
 			<view class="delete" data-id="{{item.id}}" bindtap="delItem">删除</view>
 		</view>
 	</view>
-	<view class="footer">
-
+	<view class="footer" wx:if="{{dataList.length>0}}">
+		<view class="foot-lt">
+			<view class="lt-imgs" bindtap="checkAll">
+				<view class="icon-check">
+					<image src="{{isChecked?check:noCheck}}"></image>
+				</view>
+				<view class="all">全选</view>
+			</view>
+			<view class="lt-all">合计：<view class="price">￥{{allPrice}}</view>
+			</view>
+		</view>
+		<view class="foot-rt">去结算({{checkList.length}})</view>
+	</view>
+	<view class="data-null" wx:if="{{dataList.length===0}}">
+		<view>
+			<view class="titles">空空如也 ~</view>
+			<view class="null-img">
+				<image src="../../assets/images/cartT.png"></image>
+			</view>
+			<view class="text">还没有已加入购物车的商品，去看看吧！</view>
+		</view>
 	</view>
 </view>

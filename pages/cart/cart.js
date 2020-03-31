@@ -40,13 +40,31 @@ Page({
         num: 1,
         isTouchMove: false, //默认隐藏删除
         checked: false
-      }
+      },
+      {
+        id: 5,
+        img: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/e850fa029579ba886e3d5c81f00ae534.jpg?thumb=1&w=200&h=200&f=webp&q=90",
+        title: "小米手环4",
+        price: 169,
+        num: 1,
+        isTouchMove: false, //默认隐藏删除
+        checked: false
+      },
+      {
+        id: 6,
+        img: "https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/7cfdbce40301133a287e9e57faa37bdf.jpg?thumb=1&w=200&h=200&f=webp&q=90",
+        title: "Redmi K30 Pro 变焦版",
+        price: 3799,
+        num: 1,
+        isTouchMove: false, //默认隐藏删除
+        checked: false
+      },
     ],
     noCheck: "https://i.loli.net/2020/03/05/zaBLDGlk2dCUwZQ.png",
     check: "https://i.loli.net/2020/03/05/2ODunK73vlaHhIw.png",
     isChecked: false, // 是否全选
     checkList: [], // 选中的项
-    buyPrice: 0, // 结算总价
+    allPrice: 0, // 结算总价
 
     // 设置开始的位置
     startX: 0,
@@ -136,5 +154,96 @@ Page({
     this.setData({
       dataList
     })
+    this.getCheckList();
+  },
+
+  // 单选
+  checkItem(e) {
+    let item = e.currentTarget.dataset.item;
+    let index = e.currentTarget.dataset.index;
+    let dataList = [...this.data.dataList]
+    item.checked = !item.checked;
+    dataList[index] = item;
+    this.setData({
+      dataList
+    })
+    this.getCheckList();
+  },
+
+  // 拿到被选中的项
+  getCheckList() {
+    let dataList = [...this.data.dataList];
+    let checkList = [];
+    let isChecked = false;
+    dataList.forEach((item, index) => {
+      if (item.checked) {
+        checkList.push(item)
+      }
+    })
+    if (checkList.length === dataList.length) {
+      isChecked = true
+    } else {
+      isChecked = false;
+    }
+    this.setData({
+      checkList,
+      isChecked
+    })
+
+    this.getAllPrice();
+  },
+  // 拿到选中的项的总价
+  getAllPrice() {
+    let checkList = [...this.data.checkList];
+    let allPrice = 0;
+    checkList.forEach((item, index) => {
+      allPrice += item.price * item.num;
+    })
+    this.setData({
+      allPrice
+    })
+  },
+
+  // 全选
+  checkAll() {
+    let checkList = [...this.data.checkList];
+    let dataList = [...this.data.dataList];
+    let isChecked = false;
+    if (dataList.length === checkList.length) {
+      dataList.forEach((item, index) => {
+        item.checked = false;
+      })
+    } else {
+      dataList.forEach((item, index) => {
+        item.checked = true;
+      })
+    }
+    this.setData({
+      dataList
+    })
+    this.getCheckList();
+  },
+  // 减少
+  reduce(e) {
+    let index = e.currentTarget.dataset.index;
+    let dataList = [...this.data.dataList]
+    if (dataList[index].num > 0) {
+      dataList[index].num--
+    }
+    this.setData({
+      dataList
+    })
+    this.getAllPrice();
+  },
+  // 增加
+  add(e) {
+    let index = e.currentTarget.dataset.index;
+    let dataList = [...this.data.dataList]
+    dataList[index].num++
+    this.setData({
+      dataList
+    })
+    this.getAllPrice();
+
   }
 })
