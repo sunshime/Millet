@@ -1,44 +1,38 @@
-page {
-  background: #f1f1f1;
-}
-
-.list {
-  position: relative;
+.touch-item {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid #ccc;
   width: 100%;
-  height: 100rpx;
-  margin: 0 auto;
-  margin-top: 50rpx;
-  overflow: hidden;
-}
-
-text {
-  margin-left: 30rpx;
-  font-size: 30rpx;
-  color: #202020;
-}
-
-.column {
-  position: absolute;
+  overflow: hidden
+ }
+ .content {
   width: 100%;
-  height: 100rpx;
-  transition: left 0.2s ease-in-out;
-  z-index: 5;
-  background: #fff;
-}
-
-.row text {
-  font-weight: bold;
-}
-
-.del {
-  position: absolute;
-  background-color: #e64340;
-  width: 180rpx;
-  text-align: center;
-  z-index: 4;
-  top: 0;
-  bottom: 0;
-  line-height: 116rpx;
-  right: 0;
+  padding: 10px;
+  line-height: 22px;
+  margin-right:0;
+ -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(90px); 
+  transform: translateX(90px);
+  margin-left: -90px
+ }
+ .del {
+  background-color: orangered;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-}
+  -webkit-transform: translateX(90px);
+  transform: translateX(90px);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+ }
+ .touch-move-active .content,
+ .touch-move-active .del {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+ }
+ 

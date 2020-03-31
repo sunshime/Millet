@@ -1,7 +1,7 @@
 <view class="cart">
 	<view class="content">
-		<view class="item" wx:for="{{dataList}}" wx:key="item.id">
-			<view class="item-left {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" style="right:{{item.right}}px">
+		<view class="item {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{dataList}}" wx:key="item.id">
+			<view class="item-left" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" animation='{{item.animation}}'>
 				<view class="icon-check">
 					<image src="{{noCheck}}"></image>
 				</view>
