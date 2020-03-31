@@ -1,5 +1,6 @@
 <view class="cart">
 	<view class="content">
+		<!-- 通过 isTouchMove 的值来对应移动位置-->
 		<view class="item {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:for="{{dataList}}" wx:key="item.id">
 			<view class="item-left" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" animation='{{item.animation}}'>
 				<view class="icon-check">
@@ -20,7 +21,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="delete" data-index="{{index}}" bindtap="delItem">删除</view>
+			<view class="delete" data-id="{{item.id}}" bindtap="delItem">删除</view>
 		</view>
 	</view>
 	<view class="footer">

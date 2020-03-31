@@ -7,7 +7,6 @@
 .item {
   margin-bottom: 15rpx;
   background-color: #fff;
-  position: relative;
   padding: 20rpx 10rpx;
   padding-right: 0;
   display: flex;
@@ -15,6 +14,7 @@
   height: 220rpx;
 }
 
+/* 除删除按钮之外的其他部分 */
 .item-left {
   display: flex;
   justify-content: start;
@@ -96,6 +96,7 @@
   margin: 0 10rpx;
 }
 
+/* 删除按钮 */
 .delete {
   height: 100%;
   width: 140rpx;

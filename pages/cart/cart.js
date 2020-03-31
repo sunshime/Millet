@@ -55,7 +55,7 @@ Page({
 
   // 开始滑动
   touchStart(e) {
-    console.log('touchStart=====>', e);
+    // console.log('touchStart=====>', e);
     let dataList = [...this.data.dataList]
     dataList.forEach(item => {
       if (item.isTouchMove) {
@@ -70,16 +70,11 @@ Page({
   },
 
   touchMove(e) {
-    console.log('touchMove=====>', e);
+    // console.log('touchMove=====>', e);
     let moveX = e.changedTouches[0].clientX;
     let moveY = e.changedTouches[0].clientY;
     let indexs = e.currentTarget.dataset.index;
     let dataList = [...this.data.dataList]
-
-    console.log('moveX====>', this.data.startX, '--', moveX);
-    console.log('moveY====>', this.data.startX, '--', moveY);
-    console.log('indexs====>', indexs);
-
 
     let angle = this.angle({
       X: this.data.startX,
@@ -88,10 +83,10 @@ Page({
       X: moveX,
       Y: moveY
     });
-    console.log('angle====>', angle);
 
     dataList.forEach((item, index) => {
       item.isTouchMove = false;
+      // 如果滑动的角度大于30° 则直接return；
       if (angle > 30) {
         return
       }
@@ -102,18 +97,12 @@ Page({
         } else { // 左滑
           item.isTouchMove = true;
         }
-
-        console.log('item===>',item.isTouchMove);
-        
       }
     })
-    console.log('dataList===>',dataList);
-    
-    this.setData({
-      dataList: dataList
-    })
-    console.log('this.data.dataList====>', this.data.dataList);
 
+    this.setData({
+      dataList
+    })
   },
 
   /**
@@ -127,4 +116,25 @@ Page({
     //返回角度 /Math.atan()返回数字的反正切值
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
+
+  // 删除
+  delItem(e) {
+    let id = e.currentTarget.dataset.id;
+    let dataList = [...this.data.dataList];
+    console.log('id--->', id);
+
+
+    for (let i = 0; i < dataList.length; i++) {
+      const item = dataList[i];
+      item.isTouchMove = false;
+      if (item.id === id) {
+        dataList.splice(i, 1);
+        break;
+      }
+    }
+
+    this.setData({
+      dataList
+    })
+  }
 })

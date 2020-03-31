@@ -2,7 +2,7 @@
 仿小米商城 -- 微信小程序
 
 ## 效果图
-![leftscrolldate1.gif](https://i.loli.net/2020/03/30/UVkWXebwcvKnPqp.gif)
+![leftscrolldate1.gif](https://i.loli.net/2020/03/31/FO6ZUKdYI217Lul.gif)
 
 PS：目前数据都是用本地的数据实现的，后期会在 easy-mock 上面添加数据进行模拟请求
 
